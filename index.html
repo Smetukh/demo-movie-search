@@ -8,15 +8,17 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
-    <body>
+    <body onload="initFunction()">
 
         <div id="search-bar">
             <input id="search-value" type="text" placeholder="Movie" />
             <button id="search-button">Search</button>
         </div>
         <div>
+            <p id="trending"><strong>Trending movies</strong></p>
             <ul id="results"></ul>
             <div id="output">
+                <p><strong>Movie at close range</strong></p>
             </div>
         </div>
 

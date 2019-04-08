@@ -1,20 +1,23 @@
 (function() {
     'use strict';
-    var SearchBar = {};
+    let SearchBar = {};
     SearchBar.prototype = {
       init: function() {
-        var searchbar = document.getElementById('search-bar');
-        var button = document.getElementById('search-button');
+        let searchbar = document.getElementById('search-bar');
+        let button = document.getElementById('search-button');
         button.addEventListener('click', this.onclick.bind(this));
       },
       onclick: function() {
         this.dispatchValue();
+        
       },
       dispatchValue: function() {
-        var searchvalue = document.getElementById('search-value');
+        let searchvalue = document.getElementById('search-value');
+        let trending = document.getElementById('trending');
+        trending.style.display = "none";
   
         if(searchvalue.value === '') return; 
-        var moviePayloadEvent = new CustomEvent('searchMovies', { 'detail': searchvalue.value });
+        let moviePayloadEvent = new CustomEvent('searchMovies', { 'detail': searchvalue.value });
         document.dispatchEvent(moviePayloadEvent);
       }
     }

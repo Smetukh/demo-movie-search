@@ -16,25 +16,59 @@ SearchResults.populate = function(data) {
       let anchor = document.createElement('a');
       anchor.href = '#';
       anchor.innerHTML = item.title;
-      anchor.onclick = clickHandler;
+      anchor.onclick = movieInfoHandler;
       anchor.setAttribute('movie-data', JSON.stringify(item));
-      listItem.appendChild(anchor); //document.createTextNode(item.title));
+      listItem.appendChild(anchor); 
       list.appendChild(listItem);
-      //tempListItem.onclick = loadScript;
-      // document.body.appendChild(tempListItem);
     })
 
-    function clickHandler() {
-      let itemInfo;
-      list.style.display = 'none';
-      output.style.display = 'block';
-      let para = document.createElement("p");
-      let node = document.createTextNode("This is new.");
-      para.appendChild(node);
+    function movieInfoHandler() {
+      
 
       let element = document.getElementById("output");
-      element.appendChild(para);
+      let trending = document.getElementById('trending');
+      trending.style.display = "none";
+      element.innerHTML = ''
       let item = JSON.parse(this.getAttribute('movie-data'));
+      list.style.display = 'none';
+      output.style.display = 'block';
+
+      // fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=18&primary_release_year=2014&api_key=81cfc9e7f03740911f7568ce112347b3&language=en-US`)
+      //     .then(function(response) {
+      //       return response.json();
+      //     })
+      //     .then(function(data) {
+      //       console.log(JSON.stringify(data));
+      //       console.log('##########################');
+      //       console.log(data);
+      //       SearchResults.populate();
+      //       console.log('json = ')
+      //       SearchResults.populate(data.results);
+      //     })
+
+
+      
+      let picture = document.createElement("IMG");
+      picture.setAttribute("src", item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : 'https://upload.wikimedia.org/wikipedia/en/f/f9/No-image-available.jpg');
+      picture.setAttribute("width", "20%");
+      picture.setAttribute("height", "20%");
+      picture.setAttribute("alt", `${item.title} poster`);
+
+      let description = document.createElement("p");
+      description.style.width = "30%"
+      let node = document.createTextNode(`${item.overview}` || 'No description available.');
+      let span = document.createElement('span');
+      let recommendations = document.createTextNode('Recommendations:');
+      span.style.fontWeight = "bold";
+      span.appendChild(recommendations);
+      description.appendChild(node);
+      
+
+
+      
+      element.appendChild(picture);
+      element.appendChild(description);      
+      element.appendChild(span);      
       console.log(item);
      }
 }
