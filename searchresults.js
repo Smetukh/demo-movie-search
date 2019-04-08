@@ -12,5 +12,12 @@ SearchResults.populate = function(data) {
       tempListItem = document.createElement('li');
       tempListItem.appendChild(document.createTextNode(item.title));
       list.appendChild(tempListItem);
+      tempListItem.href = '#';
+      tempListItem.onclick = loadScript;
+      document.body.appendChild(tempListItem);
     })
+
+    function loadScript(){
+      alert('Hi')
+     }
 }
