@@ -11,27 +11,14 @@
             return response.json();
           })
           .then(function(data) {
-            console.log(JSON.stringify(data));
-            console.log('##########################');
-            console.log(data);
             SearchResults.populate();
-            console.log('json = ')
             SearchResults.populate(data.results);
           })
         }, false);
       }
     }
-
-    var onMoviesError = function(error) {
-      console.log(error);
-    };
-  
     App.prototype.init();
-
-    
-
   }());
-
 
   function initFunction() {
     fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=81cfc9e7f03740911f7568ce112347b3`)
@@ -39,11 +26,7 @@
             return response.json();
           })
           .then(function(data) {
-            console.log(JSON.stringify(data));
-            console.log('##########################');
-            console.log(data);
             SearchResults.populate();
-            console.log('json = ')
             SearchResults.populate(data.results);
           })
   }
