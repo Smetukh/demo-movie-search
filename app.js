@@ -15,20 +15,13 @@
             console.log('##########################');
             console.log(data);
             SearchResults.populate();
-            // var json = JSON.parse(data);
             console.log('json = ')
             SearchResults.populate(data.results);
           })
         }, false);
       }
     }
-  
-    // var onMoviesRetrieved = function(data) {
-    //   SearchResults.populate();
-    //   var json = JSON.parse(data);
-    //   SearchResults.populate(json.results);
-    // };
-  
+
     var onMoviesError = function(error) {
       console.log(error);
     };
